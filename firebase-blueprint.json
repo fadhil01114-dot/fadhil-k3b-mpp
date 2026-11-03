@@ -1,0 +1,179 @@
+{
+  "entities": {
+    "Employee": {
+      "title": "Employee",
+      "description": "Master Data Pegawai / Karyawan Perusahaan",
+      "type": "object",
+      "properties": {
+        "nip": { "type": "string", "maxLength": 30 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "departmentId": { "type": "string", "maxLength": 50 },
+        "departmentName": { "type": "string", "maxLength": 100 },
+        "position": { "type": "string", "maxLength": 100 },
+        "salary": { "type": "number" },
+        "status": { "type": "string", "enum": ["Aktif", "Cuti", "Resign"] },
+        "joinDate": { "type": "string", "maxLength": 20 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["nip", "name", "email", "position", "status"]
+    },
+    "Department": {
+      "title": "Department",
+      "description": "Master Data Departemen dan Divisi Perusahaan",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "maxLength": 20 },
+        "name": { "type": "string", "maxLength": 100 },
+        "head": { "type": "string", "maxLength": 100 },
+        "budget": { "type": "number" },
+        "location": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["code", "name"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Master Data Produk, Barang, atau Jasa Layanan Perusahaan",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 100 },
+        "unit": { "type": "string", "maxLength": 30 },
+        "price": { "type": "number" },
+        "costPrice": { "type": "number" },
+        "stock": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["sku", "name", "price"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "Master Data Klien, Pelanggan, dan Vendor Rekanan Perusahaan",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 150 },
+        "pic": { "type": "string", "maxLength": 100 },
+        "type": { "type": "string", "enum": ["Pelanggan", "Vendor", "Partner"] },
+        "email": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "address": { "type": "string", "maxLength": 250 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["name", "type"]
+    },
+    "SalesInvoice": {
+      "title": "SalesInvoice",
+      "description": "Transaksi Penjualan dan Tagihan Faktur Perusahaan",
+      "type": "object",
+      "properties": {
+        "invoiceNumber": { "type": "string", "maxLength": 50 },
+        "clientId": { "type": "string", "maxLength": 50 },
+        "clientName": { "type": "string", "maxLength": 150 },
+        "date": { "type": "string", "maxLength": 30 },
+        "dueDate": { "type": "string", "maxLength": 30 },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "taxRate": { "type": "number" },
+        "taxAmount": { "type": "number" },
+        "discount": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["Draft", "Terkirim", "Lunas", "Jatuh Tempo"] },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["invoiceNumber", "clientName", "totalAmount", "status"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Transaksi Pengeluaran dan Kas Operasional Perusahaan",
+      "type": "object",
+      "properties": {
+        "referenceNo": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 30 },
+        "category": { "type": "string", "maxLength": 100 },
+        "departmentId": { "type": "string", "maxLength": 50 },
+        "departmentName": { "type": "string", "maxLength": 100 },
+        "amount": { "type": "number" },
+        "recipient": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 300 },
+        "status": { "type": "string", "enum": ["Menunggu", "Disetujui", "Ditolak"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["referenceNo", "amount", "category", "status"]
+    },
+    "Payroll": {
+      "title": "Payroll",
+      "description": "Transaksi Penggajian Karyawan Bulanan",
+      "type": "object",
+      "properties": {
+        "period": { "type": "string", "maxLength": 30 },
+        "employeeId": { "type": "string", "maxLength": 50 },
+        "employeeName": { "type": "string", "maxLength": 100 },
+        "nip": { "type": "string", "maxLength": 50 },
+        "department": { "type": "string", "maxLength": 100 },
+        "basicSalary": { "type": "number" },
+        "allowance": { "type": "number" },
+        "deduction": { "type": "number" },
+        "netSalary": { "type": "number" },
+        "paymentDate": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "enum": ["Pending", "Dibayar"] },
+        "notes": { "type": "string", "maxLength": 300 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["period", "employeeName", "netSalary", "status"]
+    },
+    "CompanyProfile": {
+      "title": "CompanyProfile",
+      "description": "Profil dan Identitas Perusahaan",
+      "type": "object",
+      "properties": {
+        "companyName": { "type": "string", "maxLength": 150 },
+        "tagline": { "type": "string", "maxLength": 200 },
+        "address": { "type": "string", "maxLength": 300 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "email": { "type": "string", "maxLength": 100 },
+        "website": { "type": "string", "maxLength": 100 },
+        "npwp": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["companyName"]
+    }
+  },
+  "firestore": {
+    "/employees/{employeeId}": {
+      "schema": { "$ref": "#/entities/Employee" },
+      "description": "Koleksi data master karyawan perusahaan"
+    },
+    "/departments/{departmentId}": {
+      "schema": { "$ref": "#/entities/Department" },
+      "description": "Koleksi data master departemen / divisi"
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Koleksi data master barang, produk dan layanan"
+    },
+    "/clients/{clientId}": {
+      "schema": { "$ref": "#/entities/Client" },
+      "description": "Koleksi data master pelanggan dan rekanan vendor"
+    },
+    "/sales_invoices/{invoiceId}": {
+      "schema": { "$ref": "#/entities/SalesInvoice" },
+      "description": "Koleksi transaksi faktur dan penjualan"
+    },
+    "/expenses/{expenseId}": {
+      "schema": { "$ref": "#/entities/Expense" },
+      "description": "Koleksi transaksi pengeluaran dan kas operasional"
+    },
+    "/payrolls/{payrollId}": {
+      "schema": { "$ref": "#/entities/Payroll" },
+      "description": "Koleksi transaksi penggajian payroll karyawan"
+    },
+    "/company_profile/{profileId}": {
+      "schema": { "$ref": "#/entities/CompanyProfile" },
+      "description": "Profil perusahaan dan informasi umum"
+    }
+  }
+}

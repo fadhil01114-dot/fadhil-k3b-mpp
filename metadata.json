@@ -1,0 +1,6 @@
+{
+  "name": "Nusantara ERP - Sistem Manajemen Perusahaan",
+  "description": "Sistem Informasi Manajemen Perusahaan berbasis cloud dengan Firebase Firestore persisten: Master Data, Transaksi Penjualan, Kas Operasional, Penggajian, dan Laporan Keuangan Real-Time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
